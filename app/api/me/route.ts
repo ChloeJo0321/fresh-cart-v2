@@ -55,7 +55,14 @@ export async function GET() {
     return NextResponse.json(currentUser);
   } catch (err: unknown) {
     console.error(err);
-    // N: Return 401 Unauthorized
+    // N: Expired, invalid token -> Return 401 Unauthorized
+    if (
+      err instanceof jwt.TokenExpiredError ||
+      err instanceof jwt.JsonWebTokenError
+    ) {
+      return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+    }
+
     return NextResponse.json(
       { message: "Internal Server Error" },
       { status: 500 },
