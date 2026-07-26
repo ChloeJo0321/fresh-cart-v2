@@ -13,7 +13,6 @@ type User = {
 
 export default function Page() {
   const [currentUser, setCurrentUser] = useState<User | null>(null);
-  // const [signInErr, setSignInErr] = useState<string>("");
 
   const router = useRouter();
 
