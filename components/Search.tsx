@@ -53,6 +53,7 @@ export default function Search() {
         // N:
         if (!res.ok) {
           if (!ignore) {
+            // Clear previous suggestions to avoid showing stale(old) results
             setSuggestions([]);
           }
           return;
@@ -66,6 +67,7 @@ export default function Search() {
       } catch (err: unknown) {
         console.error(err);
         if (!ignore) {
+          // Clear previous suggestions to avoid showing stale(old) results
           setSuggestions([]);
         }
       }
