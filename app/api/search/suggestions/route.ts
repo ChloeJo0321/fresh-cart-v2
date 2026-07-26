@@ -9,22 +9,22 @@ type ProductSuggestion = RowDataPacket & {
 export async function GET(request: Request) {
   try {
     const { searchParams } = new URL(request.url);
-    const searchWord = searchParams.get("q")?.trim();
+    const typedWord = searchParams.get("q")?.trim();
 
-    // search word exists?
+    // typed word exists?
     // N => Return empty array
-    if (!searchWord) {
+    if (!typedWord) {
       return NextResponse.json([], { status: 200 });
     }
 
-    // Search for all matching words
+    // Find suggestions for the typed word
     const [rows] = await db.query<ProductSuggestion[]>(
       `SELECT DISTINCT
       search_keyword AS searchKeyword
       FROM products
       WHERE search_keyword
       LIKE ?`,
-      [`${searchWord}%`],
+      [`${typedWord}%`],
     );
 
     return NextResponse.json(rows, { status: 200 });
