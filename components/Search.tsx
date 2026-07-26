@@ -107,9 +107,9 @@ export default function Search() {
       const nextIndex =
         currentIndex === -1
           ? suggestions.length - 1
-          : currentIndex > 0
-            ? currentIndex - 1
-            : -1;
+          : currentIndex === 0
+            ? -1
+            : currentIndex - 1;
 
       setCurrentIndex(nextIndex);
 
