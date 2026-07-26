@@ -1,4 +1,4 @@
-# Fresh Cart
+# Fresh Cart v2
 
 A full-stack grocery e-commerce application built with Next.js, TypeScript, and MySQL.
 
