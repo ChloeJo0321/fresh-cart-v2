@@ -29,7 +29,7 @@ export default function Page() {
       }
       // Y:
       const data = await res.json();
-      console.log(data);
+
       setCurrentUser(data);
     };
 
