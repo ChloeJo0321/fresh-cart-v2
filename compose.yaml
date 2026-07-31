@@ -1,0 +1,25 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env.docker
+    depends_on:
+      - db
+  db:
+    image: mysql:8.4
+    ports:
+      - "3307:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root0730
+      MYSQL_DATABASE: fresh_cart
+      MYSQL_USER: freshcart
+      MYSQL_PASSWORD: freshCart0730
+    volumes:
+      - db_storage:/var/lib/mysql
+
+volumes:
+  db_storage:
