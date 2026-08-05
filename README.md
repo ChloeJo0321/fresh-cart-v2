@@ -27,14 +27,30 @@ Fresh Cart is a full-stack grocery e-commerce application built with Next.js and
 - Frontend: TypeScript, React, Next.js
 - Backend: Next.js Route Handlers (REST API)
 - Database: MySQL
-- Deployment: Vercel, Railway
+- Deployment: Vercel (Public Demo), AWS EC2
+- Containerization: Docker, Docker Compose
 
 ---
 
-## 🚀 Features
+## 🚀 Deployment
+
+### Public Demo
+
+- Deployed the application to Vercel for public access
+
+### Cloud Deployment Experience
+
+- Containerized the application using Docker
+- Managed the application and database containers using Docker Compose
+- Deployed the application to an AWS EC2 instance
+- Configured production environment variables for secure database connectivity and application configuration
+
+---
+
+## 🧩 Features
 
 - Browse products by category and view product details
-- Search products and view search results
+- Search products with search suggestions and view search results
 - Add products to the cart and complete checkout
 - Merge guest cart items after sign-in
 - Sign up and sign in securely
@@ -114,6 +130,8 @@ Add a finally block and reset the submitting state so that users can retry the c
 
 ## 📦 Installation / Setup
 
+### Local Development
+
 1. Clone the repository.
 
 ```bash
@@ -153,6 +171,16 @@ npm run dev
 
 ```text
 http://localhost:3000
+```
+
+---
+
+### Run with Docker
+
+Run the application using Docker Compose.
+
+```bash
+docker compose up --build
 ```
 
 ---
