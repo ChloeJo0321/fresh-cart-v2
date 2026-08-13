@@ -32,3 +32,23 @@ export default async function getUserIdFromToken() {
     return null;
   }
 }
+
+// Validate user's input in sign in
+export function validateSignInInput(
+  email: unknown,
+  password: unknown,
+): boolean {
+  // Validate type before normalizing the info
+  if (typeof email !== "string" || typeof password !== "string") {
+    return false;
+  }
+
+  // Validate email
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const isValidEmail = emailRegex.test(email);
+
+  if (!isValidEmail || password === "") {
+    return false;
+  }
+  return true;
+}
