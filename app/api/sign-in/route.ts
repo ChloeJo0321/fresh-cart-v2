@@ -4,26 +4,17 @@ import type { RowDataPacket } from "mysql2";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { cookies } from "next/headers";
+import { validateSignInInput } from "@/lib/auth";
 
 export async function POST(request: Request) {
   try {
     // Get user info from frontend
     const { email, password } = await request.json();
 
-    // Validate type before normalizing the info
-    if (typeof email !== "string" || typeof password !== "string") {
-      return NextResponse.json(
-        { message: "Invalid email or password" },
-        { status: 400 },
-      );
-    }
+    // Use helper function to validate sign in input (separation of concerns)
+    const isValidInput = validateSignInInput(email, password);
 
-    // Validate email
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    const isValidEmail = emailRegex.test(email);
-
-    // Validate the info
-    if (!isValidEmail || password === "") {
+    if (!isValidInput) {
       return NextResponse.json(
         { message: "Invalid email or password" },
         { status: 400 },
